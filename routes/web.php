@@ -22,4 +22,10 @@ Route::middleware('auth')->group(function () {
 });
 
 
+    /**
+     * Handle an incoming authentication request.
+     */    /**
+     * Handle an incoming authentication request.
+     */
+
 require __DIR__.'/auth.php';
