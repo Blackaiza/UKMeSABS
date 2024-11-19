@@ -1,5 +1,12 @@
 <?php
 
+
+    /**
+     * Handle an incoming authentication request.
+     */    /**
+     * Handle an incoming authentication request. hi
+     */
+    
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
