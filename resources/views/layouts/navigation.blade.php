@@ -10,53 +10,48 @@
                     </a>
                 </div>
 
-                <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="Auth::user()->usertype == 'admin' ? route('admin.dashboard') : route('dashboard') " :active="Auth::user()->usertype == 'admin' ? request()->routeIs('admin.dashboard') : request()->routeIs('dashboard') ">
+                <!-- Navigation Admin Links -->
+
+           @if (Auth::user()->role == 'admin')
+                <span class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="Auth::user()->usertype == 'admin' ? route('admin.dashboard') : route('admin.dashboard') " :active="Auth::user()->usertype == 'admin' ? request()->routeIs('admin.dashboard') : request()->routeIs('admin.dashboard') ">
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    <!-- admin links -->
-                     @if (Auth::user()->usertype == 'admin')
-                     <x-nav-link href="admin/managestaff" :active="request()->routeIs('admin.managestaff')">
+                    <x-nav-link :href="Auth::user()->usertype == 'admin' ? route('admin.managestaff') : route('admin.managestaff') " :active="Auth::user()->usertype == 'admin' ? request()->routeIs('admin.managestaff') : request()->routeIs('admin.managestaff') ">
                         {{ __('Manage Staff') }}
                     </x-nav-link>
 
-                    <x-nav-link href="admin/managefacility" :active="request()->routeIs('admin.managefacility')">
+                    <x-nav-link :href="Auth::user()->usertype == 'admin' ? route('admin.managefacility') : route('admin.managefacility') " :active="Auth::user()->usertype == 'admin' ? request()->routeIs('admin.managefacility') : request()->routeIs('admin.managefacility') ">
                         {{ __('Manage Facility') }}
                     </x-nav-link>
 
-                    <x-nav-link href="admin/report" :active="request()->routeIs('admin.report')">
+                    <x-nav-link :href="Auth::user()->usertype == 'admin' ? route('admin.report') : route('admin.report') " :active="Auth::user()->usertype == 'admin' ? request()->routeIs('admin.report') : request()->routeIs('admin.report') ">
                         {{ __('Report') }}
                     </x-nav-link>
-                     @endif
+                </span>
+                @endif
+               
 
-                <!-- user links -->
-                @if (Auth::user()->usertype == 'user')
-                     <x-nav-link href="user/booking" :active="request()->routeIs('user.booking')">
+               <!-- Navigation User Links -->
+               @if (Auth::user()->role == 'user')
+                <span class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="Auth::user()->usertype == 'user' ? route('user.dashboard') : route('user.dashboard') " :active="Auth::user()->usertype == 'user' ? request()->routeIs('user.dashboard') : request()->routeIs('user.dashboard') ">
+                        {{ __('Dashboard') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="Auth::user()->usertype == 'user' ? route('user.booking') : route('user.booking') " :active="Auth::user()->usertype == 'user' ? request()->routeIs('user.booking') : request()->routeIs('user.booking') ">
                         {{ __('Booking') }}
                     </x-nav-link>
 
-                    <x-nav-link href="user/history" :active="request()->routeIs('admin.history')">
+                    <x-nav-link :href="Auth::user()->usertype == 'user' ? route('user.history') : route('user.history') " :active="Auth::user()->usertype == 'user' ? request()->routeIs('user.history') : request()->routeIs('user.history') ">
                         {{ __('History') }}
                     </x-nav-link>
+                </span>
+                @endif
+                </span>
 
-                     @endif
-
-                </div>
-                <!-- Booking -->
-                {{-- <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('booking')" :active="request()->routeIs('booking')">
-                        {{ __('Booking') }}
-                    </x-nav-link>
-                </div> --}}
-                <!-- History -->
-                {{-- <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('history')" :active="request()->routeIs('history')">
-                        {{ __('History') }}
-                    </x-nav-link>
-                </div> --}}
-                <!--  -->
+                <!--Akhir flex-->
             </div>
 
             <!-- Settings Dropdown -->
