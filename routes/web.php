@@ -14,6 +14,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+    //user routes
+    Route::middleware(['auth','userMiddleware']) ->group(function(){
+
+        Route::get('booking', [BookingController::class, 'index'])->name('user.booking');
+
+    });
+     
 Route::get('/admin/dashboard',[\App\Http\Controllers\AdminController::class, 'dashboard'])->name('admin.dashboard')
     ->middleware(['auth', 'role:admin']);
 

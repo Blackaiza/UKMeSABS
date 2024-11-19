@@ -5,16 +5,44 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                <a href="{{ Auth::user()->usertype == 'admin' ? route('admin.dashboard') : route('dashboard') }}">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="Auth::user()->usertype == 'admin' ? route('admin.dashboard') : route('dashboard') " :active="Auth::user()->usertype == 'admin' ? request()->routeIs('admin.dashboard') : request()->routeIs('dashboard') ">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+
+                    <!-- admin links -->
+                     @if (Auth::user()->usertype == 'admin')
+                     <x-nav-link href="admin/managestaff" :active="request()->routeIs('admin.managestaff')">
+                        {{ __('Manage Staff') }}
+                    </x-nav-link>
+
+                    <x-nav-link href="admin/managefacility" :active="request()->routeIs('admin.managefacility')">
+                        {{ __('Manage Facility') }}
+                    </x-nav-link>
+
+                    <x-nav-link href="admin/report" :active="request()->routeIs('admin.report')">
+                        {{ __('Report') }}
+                    </x-nav-link>
+                     @endif
+
+                <!-- user links -->
+                @if (Auth::user()->usertype == 'user')
+                     <x-nav-link href="user/booking" :active="request()->routeIs('user.booking')">
+                        {{ __('Booking') }}
+                    </x-nav-link>
+
+                    <x-nav-link href="user/history" :active="request()->routeIs('admin.history')">
+                        {{ __('History') }}
+                    </x-nav-link>
+
+                     @endif
+
                 </div>
                 <!-- Booking -->
                 {{-- <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
