@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Storage;
 
 class RegisteredUserController extends Controller
 {
@@ -36,9 +37,9 @@ class RegisteredUserController extends Controller
             'picture' => ['file', 'mimes:jpg,png,gif', 'max:3072'],
         ]);
 
-        $path = null ;
+        $profilepicture = null ;
         if ($request->hasFile('picture')){
-            $path = $request->file('picture')->storePublicly('profile pictures');
+            $profilepicture = Storage::disk('public')->put('/', $request->file('picture'));
         }
         
 
@@ -46,7 +47,7 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'picture' => $path,
+            'picture' => $profilepicture,
         ]);
 
         event(new Registered($user));
