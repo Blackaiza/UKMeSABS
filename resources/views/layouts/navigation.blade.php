@@ -14,19 +14,19 @@
 
            @if (Auth::user()->role == 'admin')
                 <span class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="Auth::user()->usertype == 'admin' ? route('admin.dashboard') : route('admin.dashboard') " :active="Auth::user()->usertype == 'admin' ? request()->routeIs('admin.dashboard') : request()->routeIs('admin.dashboard') ">
+                    <x-nav-link :href="Auth::user()->role == 'admin' ? route('admin.dashboard') : route('admin.dashboard') " :active="Auth::user()->role == 'admin' ? request()->routeIs('admin.dashboard') : request()->routeIs('admin.dashboard') ">
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="Auth::user()->usertype == 'admin' ? route('admin.managestaff') : route('admin.managestaff') " :active="Auth::user()->usertype == 'admin' ? request()->routeIs('admin.managestaff') : request()->routeIs('admin.managestaff') ">
+                    <x-nav-link :href="Auth::user()->role == 'admin' ? route('admin.managestaff') : route('admin.managestaff') " :active="Auth::user()->role == 'admin' ? request()->routeIs('admin.managestaff') : request()->routeIs('admin.managestaff') ">
                         {{ __('Manage Staff') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="Auth::user()->usertype == 'admin' ? route('admin.managefacility') : route('admin.managefacility') " :active="Auth::user()->usertype == 'admin' ? request()->routeIs('admin.managefacility') : request()->routeIs('admin.managefacility') ">
+                    <x-nav-link :href="Auth::user()->role == 'admin' ? route('admin.managefacility') : route('admin.managefacility') " :active="Auth::user()->role == 'admin' ? request()->routeIs('admin.managefacility') : request()->routeIs('admin.managefacility') ">
                         {{ __('Manage Facility') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="Auth::user()->usertype == 'admin' ? route('admin.report') : route('admin.report') " :active="Auth::user()->usertype == 'admin' ? request()->routeIs('admin.report') : request()->routeIs('admin.report') ">
+                    <x-nav-link :href="Auth::user()->role == 'admin' ? route('admin.report') : route('admin.report') " :active="Auth::user()->role == 'admin' ? request()->routeIs('admin.report') : request()->routeIs('admin.report') ">
                         {{ __('Report') }}
                     </x-nav-link>
                 </span>
@@ -36,15 +36,15 @@
                <!-- Navigation User Links -->
                @if (Auth::user()->role == 'user')
                 <span class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="Auth::user()->usertype == 'user' ? route('user.dashboard') : route('user.dashboard') " :active="Auth::user()->usertype == 'user' ? request()->routeIs('user.dashboard') : request()->routeIs('user.dashboard') ">
+                    <x-nav-link :href="Auth::user()->role == 'user' ? route('user.dashboard') : route('user.dashboard') " :active="Auth::user()->role == 'user' ? request()->routeIs('user.dashboard') : request()->routeIs('user.dashboard') ">
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="Auth::user()->usertype == 'user' ? route('user.booking') : route('user.booking') " :active="Auth::user()->usertype == 'user' ? request()->routeIs('user.booking') : request()->routeIs('user.booking') ">
+                    <x-nav-link :href="Auth::user()->role == 'user' ? route('user.booking') : route('user.booking') " :active="Auth::user()->role == 'user' ? request()->routeIs('user.booking') : request()->routeIs('user.booking') ">
                         {{ __('Booking') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="Auth::user()->usertype == 'user' ? route('user.history') : route('user.history') " :active="Auth::user()->usertype == 'user' ? request()->routeIs('user.history') : request()->routeIs('user.history') ">
+                    <x-nav-link :href="Auth::user()->role == 'user' ? route('user.history') : route('user.history') " :active="Auth::user()->role == 'user' ? request()->routeIs('user.history') : request()->routeIs('user.history') ">
                         {{ __('History') }}
                     </x-nav-link>
                 </span>
@@ -103,9 +103,36 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+
+            @if (Auth::user()->role == 'admin')
+            <x-responsive-nav-link :href="Auth::user()->role == 'admin' ? route('admin.dashboard') : route('admin.dashboard') " :active="Auth::user()->role == 'admin' ? request()->routeIs('admin.dashboard') : request()->routeIs('admin.dashboard') ">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="Auth::user()->role == 'admin' ? route('admin.managestaff') : route('admin.managestaff') " :active="Auth::user()->role == 'admin' ? request()->routeIs('admin.managestaff') : request()->routeIs('admin.managestaff') ">
+                {{ __('Manage Staff') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="Auth::user()->role == 'admin' ? route('admin.managefacility') : route('admin.managefacility') " :active="Auth::user()->role == 'admin' ? request()->routeIs('admin.managefacility') : request()->routeIs('admin.managefacility') ">
+                {{ __('Manage Facility') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="Auth::user()->role == 'admin' ? route('admin.report') : route('admin.report') " :active="Auth::user()->role == 'admin' ? request()->routeIs('admin.report') : request()->routeIs('admin.report') ">
+                {{ __('Report') }}
+            </x-responsive-nav-link>
+            @endif
+
+
+            @if (Auth::user()->role == 'user')
+            <x-responsive-nav-link :href="Auth::user()->role == 'user' ? route('user.booking') : route('user.booking') " :active="Auth::user()->role == 'user' ? request()->routeIs('user.booking') : request()->routeIs('user.booking') ">
+                {{ __('Booking') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="Auth::user()->role == 'user' ? route('user.history') : route('user.history') " :active="Auth::user()->role == 'user' ? request()->routeIs('user.history') : request()->routeIs('user.history') ">
+                {{ __('History') }}
+            </x-responsive-nav-link>
+            @endif
+
         </div>
 
         <!-- Responsive Settings Options -->

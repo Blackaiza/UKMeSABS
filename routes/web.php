@@ -17,15 +17,15 @@ Route::middleware('auth')->group(function () {
 
  // Admin routes with role middleware
  Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
- Route::get('/dashboard', [\App\Http\Controllers\AdminController::class, 'dashboard'])->name('admin.dashboard');
- Route::get('/managestaff', [\App\Http\Controllers\AdminController::class, 'managestaff'])->name('admin.managestaff');
- Route::get('/managefacility', [\App\Http\Controllers\AdminController::class, 'managefacility'])->name('admin.managefacility');
- Route::get('/report', [\App\Http\Controllers\AdminController::class, 'report'])->name('admin.report');
+    Route::get('/dashboard', [\App\Http\Controllers\AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/managestaff', [\App\Http\Controllers\AdminController::class, 'managestaff'])->name('admin.managestaff');
+    Route::get('/managefacility', [\App\Http\Controllers\AdminController::class, 'managefacility'])->name('admin.managefacility');
+    Route::get('/report', [\App\Http\Controllers\AdminController::class, 'report'])->name('admin.report');
         });
 
 
       // user routes with role middleware
-        Route::middleware(['auth', 'role:user'])->prefix('user')->group(function () {
+    Route::middleware(['auth', 'role:user'])->prefix('user')->group(function () {
         Route::get('/dashboard', [\App\Http\Controllers\UserController::class, 'dashboard'])->name('user.dashboard');
         Route::get('/history', [\App\Http\Controllers\UserController::class, 'history'])->name('user.history');
         Route::get('/booking', [\App\Http\Controllers\UserController::class, 'booking'])->name('user.booking');
