@@ -40,5 +40,6 @@ Route::middleware('auth')->group(function () {
         }
         return abort(403); // Forbidden for undefined roles
     })->middleware(['auth'])->name('dashboard');
+    
 
 require __DIR__.'/auth.php';
