@@ -9,11 +9,21 @@
         </p>
     </header>
 
-    {{-- <form method="post" action="{{ route('password.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('password.update') }}" class="mt-6 space-y-6">
         @csrf
-        @method('put') --}}
+        @method('put')
+        <div>
+            <img src="{{ asset('storage/user_pictures/' . Auth::user()->profile_picture) }}" alt="{{ Auth::user()->name }}" class="w-20 h-20 rounded-full">
+        </div>
+        
+        <div>
+            <input type="file" name="picture" id="picture" class="mt-1 block w-full text-gray-900 dark:text-gray-300">
+            @error('picture')
+                <p class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+            @enderror
+        </div>
 
-        {{-- <div class="flex items-center gap-4">
+        <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Update Picture') }}</x-primary-button>
 
             @if (session('status') === 'password-updated')
@@ -23,8 +33,8 @@
                     x-transition
                     x-init="setTimeout(() => show = false, 2000)"
                     class="text-sm text-gray-600 dark:text-gray-400"
-                >{{ __('Done Update.') }}</p>
+                >{{ __('Profile picture updated successfully.') }}</p>
             @endif
-        </div>   --}}
-    {{-- </form> --}}
+        </div>
+    </form>
 </section>

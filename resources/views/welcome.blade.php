@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,7 +31,7 @@
             <!---->
         @include('content.header')
 
-        <section id="home" class="bg-white dark:bg-gray-900 py-8">
+        <section id="home" class=" text-black bg-white dark:bg-gray-900 py-8">
             <!-- Hero section -->
             @include('content.hero')
         </section>
@@ -46,22 +46,114 @@
                 <div class="mr-auto place-self-center lg:col-span-7">
                     <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl text-black dark:text-white">Embrace the IMMORTAL</h1>
                     <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">Where the Screen Meets the Stage, <br>Legends Come Alive!</p>
-                    {{-- <a href="#" class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
-                        Get started
-                        <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                    </a>
-                    <a href="#" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
-                        Speak to Sales
-                    </a>  --}}
                 </div>
                 <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
                     {{-- <img src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/phone-mockup.png" alt="mockup"> --}}
                     {{-- <img src="https://static.wikia.nocookie.net/valorant/images/7/7f/Skye_Artwork_Full.png/revision/latest/scale-to-width-down/1000?cb=20220810202828" alt="mockup"> --}}
                     <img src="{{ asset('images/omen.png') }}" alt="omen">
-                </div>                
+                </div>
             </div>
         </section>
-        
+
+        <section id="staff" class="bg-white dark:bg-gray-900">
+            <!-- Authority Section -->
+            {{-- <div class="mt-12"> --}}
+                <h3 class="text-7xl font-bold text-gray-900 dark:text-gray-100 text-center">Position of Authority</h3>
+                <div class="mt-4  mx-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-gray-800 text-white rounded-lg shadow-md p-4 text-center">
+                        <img src="{{ asset('images/JawatanKuasa/ydp.jpg') }}" alt="Authority 1" class="rounded-full w-32 h-32 mx-auto object-cover mb-4">
+                        <h4 class="text-lg font-semibold">Aiman</h4>
+                        <p class="text-sm text-gray-400">Yang Dipertua</p>
+                    </div>
+                    <div class="bg-gray-800 text-white rounded-lg shadow-md p-4 text-center">
+                        <img src="{{ asset('images/JawatanKuasa/nydp1.jpg') }}" alt="Authority 2" class="rounded-full w-32 h-32 mx-auto object-cover mb-4">
+                        <h4 class="text-lg font-semibold">Firdaus</h4>
+                        <p class="text-sm text-gray-400">Naib Dipertuan I</p>
+                    </div>
+                    <div class="bg-gray-800 text-white rounded-lg shadow-md p-4 text-center">
+                        <img src="{{ asset('images/JawatanKuasa/nydp2.jpg') }}" alt="Authority 3" class="rounded-full w-32 h-32 mx-auto object-cover mb-4">
+                        <h4 class="text-lg font-semibold">Mustaqim</h4>
+                        <p class="text-sm text-gray-400">Naib Dipertua II</p>
+                    </div>
+                    <div class="bg-gray-800 text-white rounded-lg shadow-md p-4 text-center">
+                        <img src="{{ asset('images/JawatanKuasa/nydp3.jpg') }}" alt="Authority 3" class="rounded-full w-32 h-32 mx-auto object-cover mb-4">
+                        <h4 class="text-lg font-semibold">Hafiza</h4>
+                        <p class="text-sm text-gray-400">Naib Dipertua III</p>
+                    </div>
+                    <div class="bg-gray-800 text-white rounded-lg shadow-md p-4 text-center">
+                        <img src="{{ asset('images/JawatanKuasa/su.jpg') }}" alt="Authority 3" class="rounded-full w-32 h-32 mx-auto object-cover mb-4">
+                        <h4 class="text-lg font-semibold">Ailiana</h4>
+                        <p class="text-sm text-gray-400">Setiausaha</p>
+                    </div>
+                    <div class="bg-gray-800 text-white rounded-lg shadow-md p-4 text-center">
+                        <img src="{{ asset('images/JawatanKuasa/tsu.jpg') }}" alt="Authority 3" class="rounded-full w-32 h-32 mx-auto object-cover mb-4">
+                        <h4 class="text-lg font-semibold">Meisarah</h4>
+                        <p class="text-sm text-gray-400">Timbalan Setiausaha</p>
+                    </div>
+                    <div class="bg-gray-800 text-white rounded-lg shadow-md p-4 text-center">
+                        <img src="{{ asset('images/JawatanKuasa/bend.jpg') }}" alt="Authority 3" class="rounded-full w-32 h-32 mx-auto object-cover mb-4">
+                        <h4 class="text-lg font-semibold">Khairina</h4>
+                        <p class="text-sm text-gray-400">Bendahari</p>
+                    </div>
+                    <div class="bg-gray-800 text-white rounded-lg shadow-md p-4 text-center">
+                        <img src="{{ asset('images/JawatanKuasa/tbend.jpg') }}" alt="Authority 3" class="rounded-full w-32 h-32 mx-auto object-cover mb-4">
+                        <h4 class="text-lg font-semibold">Syafiqah</h4>
+                        <p class="text-sm text-gray-400">Timbalan Bendahari</p>
+                    </div>
+                </div>
+            {{-- </div> --}}
+        </section>
+
+
+        {{-- <section id="feedback" class="bg-white dark:bg-gray-900">
+            <!-- Authority Section -->
+            <div class="mt-12">
+                <h3 class="text-7xl font-bold text-gray-900 dark:text-gray-100 text-center">We Value your Feedback</h3>
+                <div class="mt-6  mx-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-gray-800 text-white rounded-lg shadow-md p-4 text-center">
+                        <img src="{{ asset('images/JawatanKuasa/ydp.jpg') }}" alt="Authority 1" class="rounded-full w-32 h-32 mx-auto object-cover mb-4">
+                        <h4 class="text-lg font-semibold">Aiman</h4>
+                        <p class="text-sm text-gray-400">Yang Dipertua</p>
+                    </div>
+                    <div class="bg-gray-800 text-white rounded-lg shadow-md p-4 text-center">
+                        <img src="{{ asset('images/JawatanKuasa/nydp1.jpg') }}" alt="Authority 2" class="rounded-full w-32 h-32 mx-auto object-cover mb-4">
+                        <h4 class="text-lg font-semibold">Firdaus</h4>
+                        <p class="text-sm text-gray-400">Naib Dipertuan I</p>
+                    </div>
+                    <div class="bg-gray-800 text-white rounded-lg shadow-md p-4 text-center">
+                        <img src="{{ asset('images/JawatanKuasa/nydp2.jpg') }}" alt="Authority 3" class="rounded-full w-32 h-32 mx-auto object-cover mb-4">
+                        <h4 class="text-lg font-semibold">Mustaqim</h4>
+                        <p class="text-sm text-gray-400">Naib Dipertua II</p>
+                    </div>
+                    <div class="bg-gray-800 text-white rounded-lg shadow-md p-4 text-center">
+                        <img src="{{ asset('images/JawatanKuasa/nydp3.jpg') }}" alt="Authority 3" class="rounded-full w-32 h-32 mx-auto object-cover mb-4">
+                        <h4 class="text-lg font-semibold">Hafiza</h4>
+                        <p class="text-sm text-gray-400">Naib Dipertua III</p>
+                    </div>
+                    <div class="bg-gray-800 text-white rounded-lg shadow-md p-4 text-center">
+                        <img src="{{ asset('images/JawatanKuasa/su.jpg') }}" alt="Authority 3" class="rounded-full w-32 h-32 mx-auto object-cover mb-4">
+                        <h4 class="text-lg font-semibold">Ailiana</h4>
+                        <p class="text-sm text-gray-400">Setiausaha</p>
+                    </div>
+                    <div class="bg-gray-800 text-white rounded-lg shadow-md p-4 text-center">
+                        <img src="{{ asset('images/JawatanKuasa/tsu.jpg') }}" alt="Authority 3" class="rounded-full w-32 h-32 mx-auto object-cover mb-4">
+                        <h4 class="text-lg font-semibold">Meisarah</h4>
+                        <p class="text-sm text-gray-400">Timbalan Setiausaha</p>
+                    </div>
+                    <div class="bg-gray-800 text-white rounded-lg shadow-md p-4 text-center">
+                        <img src="{{ asset('images/JawatanKuasa/bend.jpg') }}" alt="Authority 3" class="rounded-full w-32 h-32 mx-auto object-cover mb-4">
+                        <h4 class="text-lg font-semibold">Khairina</h4>
+                        <p class="text-sm text-gray-400">Bendahari</p>
+                    </div>
+                    <div class="bg-gray-800 text-white rounded-lg shadow-md p-4 text-center">
+                        <img src="{{ asset('images/JawatanKuasa/tbend.jpg') }}" alt="Authority 3" class="rounded-full w-32 h-32 mx-auto object-cover mb-4">
+                        <h4 class="text-lg font-semibold">Syafiqah</h4>
+                        <p class="text-sm text-gray-400">Timbalan Bendahari</p>
+                    </div>
+                </div>
+            </div>
+        </section> --}}
+
     </body>
 
     <section id="contact">

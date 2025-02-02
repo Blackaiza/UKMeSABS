@@ -8,12 +8,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     */
+
+/////// Display the user's profile form. //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     public function edit(Request $request): View
     {
         return view('profile.edit', [
@@ -21,9 +22,38 @@ class ProfileController extends Controller
         ]);
     }
 
-    /**
-     * Update the user's profile information.
-     */
+/////// Update the user's profile picture. //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public function updateProfilePicture(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'picture' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+        ]);
+
+        $user = $request->user();
+        $email = $user->email;
+
+        // Define the storage path
+        $folder = 'user_pictures/';
+        $fileName = $email . '.' . $request->file('user_pictures')->getClientOriginalExtension();
+
+        // Delete old profile picture if exists
+        if ($user->picture) {
+            Storage::delete($folder . $user->picture);
+        }
+
+        // Store the new profile picture
+        $path = $request->file('user_pictures')->storeAs($folder, $fileName);
+
+        // Save the path in the database
+        $user->picture = $fileName;
+        $user->save();
+
+        return Redirect::route('profile.edit')->with('status', 'profile-picture-updated');
+    }
+
+/////// Update the user's profile information. /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         $request->user()->fill($request->validated());
@@ -37,9 +67,8 @@ class ProfileController extends Controller
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
-    /**
-     * Delete the user's account.
-     */
+/////// Delete the user's account. //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     public function destroy(Request $request): RedirectResponse
     {
         $request->validateWithBag('userDeletion', [

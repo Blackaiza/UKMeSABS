@@ -10,27 +10,56 @@
                     </a>
                 </div>
 
-                <!-- Navigation Admin Links -->
+               <!-- Navigation Admin Links -->
 
-           @if (Auth::user()->role == 'admin')
-                <span class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="Auth::user()->role == 'admin' ? route('admin.dashboard') : route('admin.dashboard') " :active="Auth::user()->role == 'admin' ? request()->routeIs('admin.dashboard') : request()->routeIs('admin.dashboard') ">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
+               @if (Auth::user()->role == 'admin' || Auth::user()->role == 'staff')
+    <span class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+        <!-- Dashboard Link -->
+        <x-nav-link :href="Auth::user()->role == 'admin' ? route('admin.dashboard') : route('staff.dashboard')" 
+                    :active="Auth::user()->role == 'admin' ? request()->routeIs('admin.dashboard') : request()->routeIs('staff.dashboard')">
+            {{ __('Dashboard') }}
+        </x-nav-link>
 
-                    <x-nav-link :href="Auth::user()->role == 'admin' ? route('admin.managestaff') : route('admin.managestaff') " :active="Auth::user()->role == 'admin' ? request()->routeIs('admin.managestaff') : request()->routeIs('admin.managestaff') ">
-                        {{ __('Manage Staff') }}
-                    </x-nav-link>
+        <!-- Manage Staff Link (only for Admin) -->
+        @if (Auth::user()->role == 'admin')
+            <x-nav-link :href="route('admin.managestaff')" 
+                        :active="request()->routeIs('admin.managestaff')">
+                {{ __('Manage Account') }}
+            </x-nav-link>
+        @endif
 
-                    <x-nav-link :href="Auth::user()->role == 'admin' ? route('admin.managefacility') : route('admin.managefacility') " :active="Auth::user()->role == 'admin' ? request()->routeIs('admin.managefacility') : request()->routeIs('admin.managefacility') ">
-                        {{ __('Manage Facility') }}
-                    </x-nav-link>
+        <!-- List of Users Link (only for Staff) -->
+        @if (Auth::user()->role == 'staff')
+            <x-nav-link :href="route('staff.managestaff')" 
+                        :active="request()->routeIs('staff.managestaff')">
+                {{ __('List of User') }}
+            </x-nav-link>
+        @endif
 
-                    <x-nav-link :href="Auth::user()->role == 'admin' ? route('admin.report') : route('admin.report') " :active="Auth::user()->role == 'admin' ? request()->routeIs('admin.report') : request()->routeIs('admin.report') ">
-                        {{ __('Report') }}
-                    </x-nav-link>
-                </span>
-                @endif
+        <!-- Manage Facility Link -->
+        <x-nav-link :href="Auth::user()->role == 'admin' ? route('admin.managefacility') : route('staff.managefacility')" 
+                    :active="Auth::user()->role == 'admin' ? request()->routeIs('admin.managefacility') : request()->routeIs('staff.managefacility')">
+            {{ __('Manage Facility') }}
+        </x-nav-link>
+
+          <!-- Manage News Link -->
+        <x-nav-link :href="route('admin.manageNews')" 
+            :active="request()->routeIs('admin.manageNews')">
+        {{ __('Manage News') }}
+        </x-nav-link>
+
+
+        
+        <!-- Report Link -->
+        <x-nav-link :href="Auth::user()->role == 'admin' ? route('admin.report') : route('staff.report')" 
+                    :active="Auth::user()->role == 'admin' ? request()->routeIs('admin.report') : request()->routeIs('staff.report')">
+            {{ __('Report') }}
+        </x-nav-link>
+    </span>
+@endif
+
+
+
                
 
                <!-- Navigation User Links -->
@@ -120,6 +149,10 @@
 
             <x-responsive-nav-link :href="Auth::user()->role == 'admin' ? route('admin.managefacility') : route('admin.managefacility') " :active="Auth::user()->role == 'admin' ? request()->routeIs('admin.managefacility') : request()->routeIs('admin.managefacility') ">
                 {{ __('Manage Facility') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="Auth::user()->role == 'admin' ? route('admin.manageNews') : route('admin.manageNews') " :active="Auth::user()->role == 'admin' ? request()->routeIs('admin.manageNews') : request()->routeIs('admin.manageNews') ">
+                {{ __('Manage News') }}
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="Auth::user()->role == 'admin' ? route('admin.report') : route('admin.report') " :active="Auth::user()->role == 'admin' ? request()->routeIs('admin.report') : request()->routeIs('admin.report') ">
